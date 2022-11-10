@@ -4,6 +4,8 @@ package randomPackage;
 
 service Random {
     rpc PingPong(PingRequest) returns (PongRespose) {};
+    rpc RandomNumbers(NumberRequest) returns (stream NumberResponse) {};
+    rpc TodoList(stream TodoRequest) returns (TodoResponse) {};
 } 
 
 message PingRequest {
@@ -12,4 +14,21 @@ message PingRequest {
 
 message PongRespose {
     string message = 1;
+}
+
+message NumberRequest {
+    int32 maxVal = 1;
+}
+
+message NumberResponse {
+    int32 num = 1;
+}
+
+message TodoRequest {
+    string todo = 1;
+    string status = 2;
+}
+
+message TodoResponse {
+    repeated TodoRequest data = 1;
 }

@@ -1,44 +1,50 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 
-package randomPackage;
+package chatPackage;
 
-service Random {
-    rpc PingPong(PingRequest) returns (PongRespose) {};
-    rpc RandomNumbers(NumberRequest) returns (stream NumberResponse) {};
-    rpc TodoList(stream TodoRequest) returns (TodoResponse) {};
-    rpc Chat(stream ChatRequest) returns (stream ChatResponse) {};
+service ChatService {
+    rpc CheckInitiate(InitiateRequest) returns (InitiateResponse) {}
+    rpc SendMessage(MessageRequest) returns (google.protobuf.Empty){}
+    rpc UserStream(StreamRequest) returns (stream UserStreamResponse) {}
+    rpc ChatStream(StreamRequest) returns (stream MessageStreamResponse) {}
 } 
 
-message PingRequest {
-    string message = 1;
+
+message InitiateRequest {
+    string name = 1;
+    string avatar_url = 2;
+}
+message InitiateResponse {
+    int32 id = 1;
 }
 
-message PongRespose {
-    string message = 1;
-}
-
-message NumberRequest {
-    int32 maxVal = 1;
-}
-
-message NumberResponse {
-    int32 num = 1;
-}
-
-message TodoRequest {
-    string todo = 1;
-    string status = 2;
-}
-
-message TodoResponse {
-    repeated TodoRequest data = 1;
-}
-
-message ChatRequest {
-    string message = 1;
-}
-
-message ChatResponse {
-    string username = 1;
+message MessageRequest {
+    int32 id = 1;
     string message = 2;
+}
+
+message StreamRequest {
+    int32 id = 1; 
+}
+
+enum Status {
+    UNKNOWN = 0;
+    OFFLINE = 1;
+    ONLINE = 2;
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string status = 3;
+    string avatar_url = 4;
+}
+
+message UserStreamResponse {
+    repeated User user = 1;
+}
+
+message MessageStreamResponse {
+
 }

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "proto:gen": "./proto-gen.sh",
+    "proto:gen": "rm -rf ./proto/chatPackage && ./proto-gen.sh",
     "start": "ts-node server",
     "client": "ts-node client"
   },

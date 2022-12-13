@@ -11,19 +11,19 @@ import type { StreamRequest as _chatPackage_StreamRequest, StreamRequest__Output
 import type { UserStreamResponse as _chatPackage_UserStreamResponse, UserStreamResponse__Output as _chatPackage_UserStreamResponse__Output } from '../chatPackage/UserStreamResponse';
 
 export interface ChatServiceClient extends grpc.Client {
+  ChatInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  ChatInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  ChatInitiate(argument: _chatPackage_InitiateRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  ChatInitiate(argument: _chatPackage_InitiateRequest, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  chatInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  chatInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  chatInitiate(argument: _chatPackage_InitiateRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  chatInitiate(argument: _chatPackage_InitiateRequest, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
+  
   ChatStream(argument: _chatPackage_StreamRequest, metadata: grpc.Metadata, options?: grpc.CallOptions): grpc.ClientReadableStream<_chatPackage_MessageStreamResponse__Output>;
   ChatStream(argument: _chatPackage_StreamRequest, options?: grpc.CallOptions): grpc.ClientReadableStream<_chatPackage_MessageStreamResponse__Output>;
   chatStream(argument: _chatPackage_StreamRequest, metadata: grpc.Metadata, options?: grpc.CallOptions): grpc.ClientReadableStream<_chatPackage_MessageStreamResponse__Output>;
   chatStream(argument: _chatPackage_StreamRequest, options?: grpc.CallOptions): grpc.ClientReadableStream<_chatPackage_MessageStreamResponse__Output>;
-  
-  CheckInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  CheckInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  CheckInitiate(argument: _chatPackage_InitiateRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  CheckInitiate(argument: _chatPackage_InitiateRequest, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  checkInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  checkInitiate(argument: _chatPackage_InitiateRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  checkInitiate(argument: _chatPackage_InitiateRequest, options: grpc.CallOptions, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
-  checkInitiate(argument: _chatPackage_InitiateRequest, callback: grpc.requestCallback<_chatPackage_InitiateResponse__Output>): grpc.ClientUnaryCall;
   
   SendMessage(argument: _chatPackage_MessageRequest, metadata: grpc.Metadata, options: grpc.CallOptions, callback: grpc.requestCallback<_google_protobuf_Empty__Output>): grpc.ClientUnaryCall;
   SendMessage(argument: _chatPackage_MessageRequest, metadata: grpc.Metadata, callback: grpc.requestCallback<_google_protobuf_Empty__Output>): grpc.ClientUnaryCall;
@@ -42,9 +42,9 @@ export interface ChatServiceClient extends grpc.Client {
 }
 
 export interface ChatServiceHandlers extends grpc.UntypedServiceImplementation {
-  ChatStream: grpc.handleServerStreamingCall<_chatPackage_StreamRequest__Output, _chatPackage_MessageStreamResponse>;
+  ChatInitiate: grpc.handleUnaryCall<_chatPackage_InitiateRequest__Output, _chatPackage_InitiateResponse>;
   
-  CheckInitiate: grpc.handleUnaryCall<_chatPackage_InitiateRequest__Output, _chatPackage_InitiateResponse>;
+  ChatStream: grpc.handleServerStreamingCall<_chatPackage_StreamRequest__Output, _chatPackage_MessageStreamResponse>;
   
   SendMessage: grpc.handleUnaryCall<_chatPackage_MessageRequest__Output, _google_protobuf_Empty>;
   
@@ -53,8 +53,8 @@ export interface ChatServiceHandlers extends grpc.UntypedServiceImplementation {
 }
 
 export interface ChatServiceDefinition extends grpc.ServiceDefinition {
+  ChatInitiate: MethodDefinition<_chatPackage_InitiateRequest, _chatPackage_InitiateResponse, _chatPackage_InitiateRequest__Output, _chatPackage_InitiateResponse__Output>
   ChatStream: MethodDefinition<_chatPackage_StreamRequest, _chatPackage_MessageStreamResponse, _chatPackage_StreamRequest__Output, _chatPackage_MessageStreamResponse__Output>
-  CheckInitiate: MethodDefinition<_chatPackage_InitiateRequest, _chatPackage_InitiateResponse, _chatPackage_InitiateRequest__Output, _chatPackage_InitiateResponse__Output>
   SendMessage: MethodDefinition<_chatPackage_MessageRequest, _google_protobuf_Empty, _chatPackage_MessageRequest__Output, _google_protobuf_Empty__Output>
   UserStream: MethodDefinition<_chatPackage_StreamRequest, _chatPackage_UserStreamResponse, _chatPackage_StreamRequest__Output, _chatPackage_UserStreamResponse__Output>
 }

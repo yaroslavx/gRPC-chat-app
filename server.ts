@@ -2,7 +2,7 @@ import path from 'path';
 import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import { ProtoGrpcType } from './proto/random';
-import { ChatServiceHandlers } from './proto/randomPackage/ChatService';
+import { ChatServiceHandlers } from './proto/chatPackage/ChatService';
 
 const PORT = 8000;
 const PROTO_FILE = './proto/random.proto';
@@ -11,7 +11,7 @@ const packageDef = protoLoader.loadSync(path.resolve(__dirname, PROTO_FILE));
 const grpcObj = grpc.loadPackageDefinition(
   packageDef
 ) as unknown as ProtoGrpcType;
-const randomPackage = grpcObj.randomPackage;
+const randomPackage = grpcObj.chatPackage;
 
 function main() {
   const server = getServer();
@@ -36,7 +36,7 @@ function main() {
 function getServer() {
   const server = new grpc.Server();
   server.addService(randomPackage.ChatService.service, {
-    CheckInitiate: (call, callback) => {
+    ChatInitiate: (call, callback) => {
       const sessionName = call.request.name || '';
       const avatar_url = call.request.avatarUrl || '';
 
